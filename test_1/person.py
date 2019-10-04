@@ -5,6 +5,11 @@ class Person:
         self.pay = pay
         self.job = job
 
+    # __str__方法允许直接打印出实例，而不用打印他的特定属性，返回一个字符串
+    def __str__(self):
+        # __class__方法指向实例化对象的类
+        return '<%s=>%s>' % (self.__class__.__name__, self.name)
+
     def lastName(self):
         return self.name.split()[-1]
 
@@ -20,3 +25,5 @@ if __name__ == '__main__':
     print(bob.lastName())
     sue.giveRaise(.10)
     print(sue.pay)
+
+    print(sue)
