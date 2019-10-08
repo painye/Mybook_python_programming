@@ -12,12 +12,13 @@ shelvename = 'class-shelve'
 fieldnames = ('name', 'age', 'job', 'pay')
 
 
+# 查找键的功能
 def fetchRecord():
     key = entries['key'].get()      # 先获得待找人员
     # 如果有这个人将信息存入record
     # 如果没有则调用showerror错误·
     try:
-        # 使用键获取数据并在GUI中展示
+        # 使用键获取数据并在GUI中展示，具体的显示在entries[filed].insert()方法
         record = db[key]
     except:
         showerror(title='Error', message='No such key!')
@@ -25,10 +26,11 @@ def fetchRecord():
         for field in fieldnames:
             # 删除原来的信息
             entries[field].delete(0, END)
-            # 在0位置上插入record对象的field属性，这里相当于我直接输入了
+            # 在0位置上插入record对象的field属性，这里相当于我直接输入了，并显示了这些字符串到文本
             entries[field].insert(0, repr(getattr(record, field)))
 
 
+# 修改或添加功能
 def updateRecord():
     key = entries['key'].get()
     if key in db:
@@ -61,9 +63,9 @@ def makeWidgets():
         ent.grid(row=ix, column=1)                          # 在控件window的第ix行第1列上是输入
         entries[label] = ent                                # 获取用户输入的字符串的ent对象，并在entries中创建label与该字符串的键值对
 
-        # 按键设置与布局
+    # 按键设置与布局
     Button(window, text='Fetch', command=fetchRecord).pack(side=LEFT)
-    Button(window, text='Update', command=updateRecord()).pack(side=LEFT)
+    Button(window, text='Update', command=updateRecord).pack(side=LEFT)
     Button(window, text='Quit', command=window.quit).pack(side=RIGHT)
     return window
 
