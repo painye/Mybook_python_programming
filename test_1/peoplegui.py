@@ -5,7 +5,7 @@
 
 from tkinter import *
 from tkinter.messagebox import showerror
-import  shelve
+import shelve
 from person import Person
 
 shelvename = 'class-shelve'
